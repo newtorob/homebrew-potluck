@@ -1,22 +1,22 @@
 class Potluck < Formula
   desc "Local AI and machine management from your terminal"
   homepage "https://trypotluck.ai"
-  version "0.1.0"
+  version "0.1.1"
 
   on_macos do
     depends_on arch: :arm64
     depends_on macos: :sequoia
     on_arm do
-      url "https://releases.trypotluck.ai/cli/0.1.0/potluck-cli-0.1.0-darwin-arm64.tar.gz"
-      sha256 "a0870792febe49278b30117607391406394bda5f694598283f94d7232f2ad389"
+      url "https://releases.trypotluck.ai/cli/0.1.1/potluck-cli-0.1.1-darwin-arm64.tar.gz"
+      sha256 "a8db9da627ff085954ca77824d37f54af1403ebbdb7c3ccb2c2d99c69e18c3c8"
     end
   end
 
   on_linux do
     depends_on arch: :x86_64
     on_intel do
-      url "https://releases.trypotluck.ai/cli/0.1.0/potluck-cli-0.1.0-linux-x64.tar.gz"
-      sha256 "9934db06e1b5c808622c4432419b48ecdae47393377c64853b7208395a1f1029"
+      url "https://releases.trypotluck.ai/cli/0.1.1/potluck-cli-0.1.1-linux-x64.tar.gz"
+      sha256 "7ed3479288ea06a799a25b1f274621fd09007c3f81f9f27e9ba4241de1a069a8"
     end
   end
 
