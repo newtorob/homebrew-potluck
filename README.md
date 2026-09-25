@@ -1,4 +1,4 @@
-# Potluck CLI 0.1.1
+# Potluck CLI 0.1.2
 
 Set up your local AI runtime, manage models, inspect connections, and use a
 terminal coding agent powered by Potluck.
@@ -7,8 +7,8 @@ terminal coding agent powered by Potluck.
 
 | Platform | Archive | Checksum |
 | --- | --- | --- |
-| macOS 15+, Apple Silicon | [Download](https://releases.trypotluck.ai/cli/0.1.1/potluck-cli-0.1.1-darwin-arm64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.1/potluck-cli-0.1.1-darwin-arm64.tar.gz.sha256) |
-| Linux x86-64, glibc 2.35+ | [Download](https://releases.trypotluck.ai/cli/0.1.1/potluck-cli-0.1.1-linux-x64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.1/potluck-cli-0.1.1-linux-x64.tar.gz.sha256) |
+| macOS 15+, Apple Silicon | [Download](https://releases.trypotluck.ai/cli/0.1.2/potluck-cli-0.1.2-darwin-arm64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.2/potluck-cli-0.1.2-darwin-arm64.tar.gz.sha256) |
+| Linux x86-64, glibc 2.35+ | [Download](https://releases.trypotluck.ai/cli/0.1.2/potluck-cli-0.1.2-linux-x64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.2/potluck-cli-0.1.2-linux-x64.tar.gz.sha256) |
 
 The macOS runtime is signed with Developer ID and notarized by Apple.
 This repository contains the Homebrew formula and installation documentation.
@@ -88,6 +88,27 @@ Agent sessions can be saved explicitly with `--save-session` and resumed with
 contain local, unencrypted conversation history. Inspect `potluck --help` for
 session management and contribution schedules/resource limits.
 
+## Usage dashboard
+
+```sh
+potluck usage
+potluck usage models
+potluck usage requests
+potluck usage machines
+potluck usage --window 30 --direction served
+potluck usage --json
+```
+
+Explore requests, reported tokens, route totals and latency from your terminal.
+The overview has larger headline numbers, average first-token and p95 total
+latency, and a chart with UTC bucket labels. Use 1–4 for views, `w` for the time
+window, `d` for usage/contribution, `t` for themes and `q` to quit.
+
+Usage is recorded on this computer, not aggregated across the fleet. End-to-end
+tokens/sec includes prefill and routing; it is not live decode speed. Missing
+measurements stay unavailable. The dashboard does not enable network sharing.
+Both CLI and runtime must be upgraded; restart a running runtime after upgrading.
+
 ## Household worker recovery
 
 When a household worker becomes unreachable before output starts, the gateway
@@ -141,6 +162,5 @@ Product: https://trypotluck.ai
 ## Known household reconnect limitation
 
 After a mesh disconnect, restoring household connectivity can require restarting
-the mesh daemon on the affected peer. This was observed during release validation
-and is tracked separately from the CLI runtime. Interrupted output is reported
-as an error; the CLI does not silently substitute another model.
+the mesh daemon on the affected peer. Interrupted output is reported as an error;
+the CLI does not silently substitute another model.
