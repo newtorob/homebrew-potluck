@@ -1,3 +1,58 @@
+# Potluck CLI 0.1.3
+
+This update improves recovery when a coding model emits malformed actions or
+gets stuck, and makes one-shot exit codes reflect unfinished work.
+
+- Validate tool names and arguments before executing them. Recover narrow JSON
+  and Markdown framing mistakes without inventing missing arguments.
+- Wait for a completed response before running a tool. Interrupted streams do
+  not execute pending edits.
+- Detect repeated unchanged reads, failed edits, and no-op writes, including
+  failed-edit loops separated by reads. Stop bounded loops with a clear reason.
+- Keep test failures in later tool feedback while repairing multiple files.
+  Check otherwise unverified completion and stop after four consecutive failed
+  checks. Incomplete one-shot runs exit with status 1.
+- Correct file-scoped searches that could incorrectly return no matches.
+- Respect cancellation during final verification.
+
+## Install or upgrade
+
+```sh
+brew install newtorob/potluck/potluck
+```
+
+Existing installations:
+
+```sh
+brew update
+brew upgrade potluck
+potluck --version
+```
+
+Standalone archives and checksums: [downloads](https://github.com/newtorob/homebrew-potluck#downloads).
+Expected CLI version: `0.1.3`.
+
+## Compatibility and scope
+
+macOS 15+ on Apple Silicon, and Linux x86-64 with glibc 2.35+. Node.js 20+
+is required; Homebrew supplies it. Models download separately. This CLI-only
+release bundles the exact native runtime bytes from 0.1.2, including its
+Developer ID signed and Apple-notarized Mac runtime. Existing settings,
+downloaded weights and project model locks are preserved.
+
+The changes improve protocol handling and failure reporting, not model weights.
+They do not establish a coding-quality or speed improvement. Review generated
+changes even when the configured checks pass. Managed split-model execution is
+still under separate development and is not included in this release.
+
+Browser device login still awaits the account-service rollout. Household
+connections require a separately installed mesh daemon and an existing signed-in
+account. After a mesh disconnect, restoring connectivity may require restarting
+the affected peer's mesh daemon. This release does not automatically enable
+sharing. Windows, Intel Mac and Linux ARM64 archives are not included.
+
+---
+
 # Potluck CLI 0.1.1
 
 Project model locks and more reliable household inference, with native downloads for Apple Silicon Mac and Linux x86-64.

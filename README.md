@@ -1,4 +1,4 @@
-# Potluck CLI 0.1.2
+# Potluck CLI 0.1.3
 
 Set up your local AI runtime, manage models, inspect connections, and use a
 terminal coding agent powered by Potluck.
@@ -7,11 +7,11 @@ terminal coding agent powered by Potluck.
 
 | Platform | Archive | Checksum |
 | --- | --- | --- |
-| macOS 15+, Apple Silicon | [Download](https://releases.trypotluck.ai/cli/0.1.2/potluck-cli-0.1.2-darwin-arm64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.2/potluck-cli-0.1.2-darwin-arm64.tar.gz.sha256) |
-| Linux x86-64, glibc 2.35+ | [Download](https://releases.trypotluck.ai/cli/0.1.2/potluck-cli-0.1.2-linux-x64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.2/potluck-cli-0.1.2-linux-x64.tar.gz.sha256) |
+| macOS 15+, Apple Silicon | [Download](https://releases.trypotluck.ai/cli/0.1.3/potluck-cli-0.1.3-darwin-arm64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.3/potluck-cli-0.1.3-darwin-arm64.tar.gz.sha256) |
+| Linux x86-64, glibc 2.35+ | [Download](https://releases.trypotluck.ai/cli/0.1.3/potluck-cli-0.1.3-linux-x64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.3/potluck-cli-0.1.3-linux-x64.tar.gz.sha256) |
 
-The macOS runtime is signed with Developer ID and notarized by Apple.
-This repository contains the Homebrew formula and installation documentation.
+The Mac package retains the signed and Apple-notarized 0.1.2 runtime unchanged.
+This repository contains only the Homebrew formula and public documentation.
 
 ## Install
 
@@ -88,6 +88,18 @@ Agent sessions can be saved explicitly with `--save-session` and resumed with
 contain local, unencrypted conversation history. Inspect `potluck --help` for
 session management and contribution schedules/resource limits.
 
+## Coding-agent recovery
+
+The agent validates tool arguments, recovers narrow JSON/Markdown framing errors,
+and stops repeated failed edits or unchanged reads. Test failures stay available
+while it works across files. Interrupted responses do not execute pending tools.
+
+Configure a fixed check with `--verify "your-test-command"`. Four consecutive
+verification failures stop the task as incomplete. A one-shot run exits with
+status 1 for failed checks, exhausted turn budgets, or stalled actions, so scripts
+can distinguish a completed task from a stopped one. Passing the configured
+checks does not guarantee the generated code is correct; review changes.
+
 ## Usage dashboard
 
 ```sh
@@ -158,9 +170,3 @@ preserve your data.
 
 Downloads and installation help: https://github.com/newtorob/homebrew-potluck
 Product: https://trypotluck.ai
-
-## Known household reconnect limitation
-
-After a mesh disconnect, restoring household connectivity can require restarting
-the mesh daemon on the affected peer. Interrupted output is reported as an error;
-the CLI does not silently substitute another model.
