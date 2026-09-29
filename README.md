@@ -1,4 +1,4 @@
-# Potluck CLI 0.1.3
+# Potluck CLI 0.1.4
 
 Set up your local AI runtime, manage models, inspect connections, and use a
 terminal coding agent powered by Potluck.
@@ -7,10 +7,10 @@ terminal coding agent powered by Potluck.
 
 | Platform | Archive | Checksum |
 | --- | --- | --- |
-| macOS 15+, Apple Silicon | [Download](https://releases.trypotluck.ai/cli/0.1.3/potluck-cli-0.1.3-darwin-arm64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.3/potluck-cli-0.1.3-darwin-arm64.tar.gz.sha256) |
-| Linux x86-64, glibc 2.35+ | [Download](https://releases.trypotluck.ai/cli/0.1.3/potluck-cli-0.1.3-linux-x64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.3/potluck-cli-0.1.3-linux-x64.tar.gz.sha256) |
+| macOS 15+, Apple Silicon | [Download](https://releases.trypotluck.ai/cli/0.1.4/potluck-cli-0.1.4-darwin-arm64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.4/potluck-cli-0.1.4-darwin-arm64.tar.gz.sha256) |
+| Linux x86-64, glibc 2.35+ | [Download](https://releases.trypotluck.ai/cli/0.1.4/potluck-cli-0.1.4-linux-x64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.4/potluck-cli-0.1.4-linux-x64.tar.gz.sha256) |
 
-The Mac package retains the signed and Apple-notarized 0.1.2 runtime unchanged.
+The Mac package retains the signed and Apple-notarized runtime from 0.1.3.
 This repository contains only the Homebrew formula and public documentation.
 
 ## Install
@@ -87,6 +87,14 @@ Agent sessions can be saved explicitly with `--save-session` and resumed with
 `--resume <id>` in the same project. Saved sessions require a model lock and
 contain local, unencrypted conversation history. Inspect `potluck --help` for
 session management and contribution schedules/resource limits.
+
+## Coding-agent repairs
+
+File feedback includes the current path and bounded code context. Repository maps
+include Python and JavaScript/TypeScript declaration hints, and repair feedback
+keeps the original request nearby. The agent can write literal code without
+JSON-escaping the whole file. Whole-file overwrites require a complete read;
+truncated reads and unreadable existing files do not authorize replacement.
 
 ## Coding-agent recovery
 
