@@ -1,22 +1,22 @@
 class Potluck < Formula
   desc "Local AI and machine management from your terminal"
   homepage "https://trypotluck.ai"
-  version "0.1.4"
+  version "0.1.5"
 
   on_macos do
     depends_on arch: :arm64
     depends_on macos: :sequoia
     on_arm do
-      url "https://releases.trypotluck.ai/cli/0.1.4/potluck-cli-0.1.4-darwin-arm64.tar.gz"
-      sha256 "9b3c6ecb15eaa96f67189837f25f8227353d00a9b34994977ed621bf3e6b749d"
+      url "https://releases.trypotluck.ai/cli/0.1.5/potluck-cli-0.1.5-darwin-arm64.tar.gz"
+      sha256 "886eef18c02ebf3a064f0a5093a87044ac512c3e9b7bf2a7faf64862c2f448a0"
     end
   end
 
   on_linux do
     depends_on arch: :x86_64
     on_intel do
-      url "https://releases.trypotluck.ai/cli/0.1.4/potluck-cli-0.1.4-linux-x64.tar.gz"
-      sha256 "5bd3c167ce45555b6ad9f8315d5eec91013fc7763dc7b19bacc0f19d8dcb0c5b"
+      url "https://releases.trypotluck.ai/cli/0.1.5/potluck-cli-0.1.5-linux-x64.tar.gz"
+      sha256 "8a4978a150201e6e1bc9c97f74248889cc26ffe5528ed7cb238065381095951a"
     end
   end
 
@@ -47,7 +47,7 @@ class Potluck < Formula
       Start local setup with potluck setup --no-input.
       Optional background runtime: brew services start potluck.
       Stop a runtime started by potluck up with potluck down before switching.
-      Browser device login is awaiting the account-service rollout.
+      Sign in with potluck login; it opens your browser to approve this terminal.
       The mesh daemon is installed separately; potluck doctor checks its readiness.
       This package does not enable gateway access, contribution, or network sharing.
     EOS
