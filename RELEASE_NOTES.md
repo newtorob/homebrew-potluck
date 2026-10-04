@@ -1,19 +1,17 @@
-# Potluck CLI 0.1.5
+# Potluck CLI 0.1.6
 
-`potluck login` now works like other command-line tools.
+`potluck login` now works in one step, the way `tailscale login` does.
 
-- On a Mac, or on Linux with a desktop, it opens your browser at the approval
-  page with the code already filled in. Check that the code matches your
-  terminal, then approve.
-- The first time, you approve from an email link and can keep that browser
-  signed in. After that, approving another terminal takes one click.
-- Over SSH, in CI, on Linux without a display, or with `--no-browser`, it prints
-  the same link to open on any device.
-- `--json` and `--no-wait` output include `verificationUriComplete`, the link
-  with the code filled in.
-
-Sign-in uses the account service at trypotluck.ai, live since October 3, 2026.
-Earlier CLI versions can sign in too; they print the link instead of opening it.
+- If the Potluck engine is not running, `potluck login` starts it in the
+  background, opens your browser to approve this terminal, and finishes when
+  you approve. `potluck down` stops the engine.
+- `logout`, `whoami`, `household` and `connect` also start the engine when
+  needed, instead of asking you to run `potluck up` first.
+- On a computer running the Potluck desktop app 0.1.7 or later, the CLI uses
+  the app's engine and sign-in, so there is nothing to start and no second
+  login.
+- If an older desktop app is holding the engine's port, the CLI now says so
+  and asks you to update or quit the app.
 
 ## Install or upgrade
 
@@ -30,20 +28,16 @@ potluck --version
 ```
 
 Standalone archives and checksums: [downloads](https://github.com/newtorob/homebrew-potluck#downloads).
-Expected CLI version: `0.1.5`.
+Expected CLI version: `0.1.6`.
 
 ## Compatibility and scope
 
 macOS 15+ on Apple Silicon, and Linux x86-64 with glibc 2.35+. Node.js 20+
-is required; Homebrew supplies it. Models download separately. This CLI-only
-release keeps the native runtime from 0.1.3 and 0.1.4 byte for byte, including
-its Developer ID signed and Apple-notarized Mac runtime. Existing settings,
-downloaded weights and project model locks are preserved. The coding agent is
-unchanged from 0.1.4.
+is required; Homebrew supplies it. This CLI-only release keeps the native
+runtime from 0.1.3 to 0.1.5 byte for byte, including its Developer ID signed
+and Apple-notarized Mac runtime. Existing settings, downloaded weights and
+project model locks are preserved. The coding agent is unchanged.
 
-The CLI and the desktop app run separate engines on one computer for now. While
-the app is running, `potluck up` reports that another runtime is already
-listening and most CLI commands cannot reach it. A shared runtime is planned
-for the next desktop release. Household connections require a separately
-installed mesh daemon. This release does not automatically enable sharing.
-Windows, Intel Mac and Linux ARM64 archives are not included.
+Household connections require a separately installed mesh daemon. This
+release does not automatically enable sharing. Windows, Intel Mac and Linux
+ARM64 archives are not included.

@@ -1,4 +1,4 @@
-# Potluck CLI 0.1.5
+# Potluck CLI 0.1.6
 
 Set up your local AI runtime, manage models, inspect connections, and use a
 terminal coding agent powered by Potluck.
@@ -7,8 +7,8 @@ terminal coding agent powered by Potluck.
 
 | Platform | Archive | Checksum |
 | --- | --- | --- |
-| macOS 15+, Apple Silicon | [Download](https://releases.trypotluck.ai/cli/0.1.5/potluck-cli-0.1.5-darwin-arm64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.5/potluck-cli-0.1.5-darwin-arm64.tar.gz.sha256) |
-| Linux x86-64, glibc 2.35+ | [Download](https://releases.trypotluck.ai/cli/0.1.5/potluck-cli-0.1.5-linux-x64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.5/potluck-cli-0.1.5-linux-x64.tar.gz.sha256) |
+| macOS 15+, Apple Silicon | [Download](https://releases.trypotluck.ai/cli/0.1.6/potluck-cli-0.1.6-darwin-arm64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.6/potluck-cli-0.1.6-darwin-arm64.tar.gz.sha256) |
+| Linux x86-64, glibc 2.35+ | [Download](https://releases.trypotluck.ai/cli/0.1.6/potluck-cli-0.1.6-linux-x64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.6/potluck-cli-0.1.6-linux-x64.tar.gz.sha256) |
 
 The Mac package retains the signed and Apple-notarized runtime from 0.1.3.
 This repository contains only the Homebrew formula and public documentation.
@@ -162,8 +162,10 @@ Uninstalling a service retains your accounts, models, and settings.
 ## Scope of this release
 
 Local runtime, model management, diagnostics, gateway controls, user services
-and account sign-in are available. `potluck login` opens your browser to approve
-this terminal; over SSH it prints a link to open on any device.
+and account sign-in are available. `potluck login` starts the engine if needed
+and opens your browser to approve this terminal; over SSH it prints a link to
+open on any device. With desktop 0.1.7 or later on the same computer, the CLI
+uses the app's engine and sign-in.
 Household connection requires the separately installed Potluck mesh daemon and
 a signed-in account. This download does not install that daemon or automatically
 enable network sharing. Windows, Intel Mac, and Linux ARM64 archives are not
