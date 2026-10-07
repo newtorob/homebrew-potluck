@@ -5,19 +5,20 @@ terminal coding agent powered by Potluck.
 
 ## Downloads
 
-Linux: **0.1.7**, with Vulkan GPU acceleration. Mac: **0.1.6**.
+Mac and Linux: **0.1.8**. The Linux package includes Vulkan GPU acceleration.
 
 | Platform | Archive | Checksum |
 | --- | --- | --- |
-| macOS 15+, Apple Silicon | [Download](https://releases.trypotluck.ai/cli/0.1.6/potluck-cli-0.1.6-darwin-arm64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.6/potluck-cli-0.1.6-darwin-arm64.tar.gz.sha256) |
-| Linux x86-64, glibc 2.35+ | [Download](https://releases.trypotluck.ai/cli/0.1.7/potluck-cli-0.1.7-linux-x64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.7/potluck-cli-0.1.7-linux-x64.tar.gz.sha256) |
+| macOS 15+, Apple Silicon | [Download](https://releases.trypotluck.ai/cli/0.1.8/potluck-cli-0.1.8-darwin-arm64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.8/potluck-cli-0.1.8-darwin-arm64.tar.gz.sha256) |
+| Linux x86-64, glibc 2.35+ | [Download](https://releases.trypotluck.ai/cli/0.1.8/potluck-cli-0.1.8-linux-x64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.8/potluck-cli-0.1.8-linux-x64.tar.gz.sha256) |
 
-The Mac package retains the signed and Apple-notarized runtime from 0.1.3.
+The Mac package's runtime is byte-identical to the engine inside the signed and
+Apple-notarized Potluck 0.1.9 desktop app.
 This repository contains only the Homebrew formula and public documentation.
 
 ## Linux GPU support
 
-Linux 0.1.7 bundles Vulkan GPU acceleration with an automatic CPU fallback
+The Linux package bundles Vulkan GPU acceleration (since 0.1.7) with an automatic CPU fallback
 when a compatible GPU or driver is unavailable. Install your GPU vendor's
 Vulkan driver, then use `potluck setup` to select and test a model.
 NVIDIA RTX 2080 Ti and Intel integrated graphics have been validated;
@@ -25,7 +26,7 @@ AMD hardware validation is still pending. Performance depends on the GPU,
 model and available memory. Managed model splits remain CPU-backed on Linux.
 
 After upgrading, restart the running engine. If you use the desktop app's
-engine, update the Linux desktop app to 0.1.8 too.
+engine, update the desktop app to 0.1.9 too.
 
 ## Install
 

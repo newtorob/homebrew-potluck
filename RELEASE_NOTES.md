@@ -1,17 +1,24 @@
-# Potluck CLI 0.1.6
+# Potluck CLI 0.1.8
 
-`potluck login` now works in one step, the way `tailscale login` does.
+Share a machine with a trusted circle, and send a prompt to one.
 
-- If the Potluck engine is not running, `potluck login` starts it in the
-  background, opens your browser to approve this terminal, and finishes when
-  you approve. `potluck down` stops the engine.
-- `logout`, `whoami`, `household` and `connect` also start the engine when
-  needed, instead of asking you to run `potluck up` first.
-- On a computer running the Potluck desktop app 0.1.7 or later, the CLI uses
-  the app's engine and sign-in, so there is nothing to start and no second
-  login.
-- If an older desktop app is holding the engine's port, the CLI now says so
-  and asks you to update or quit the app.
+- `potluck contribute share circles` lets people in a trusted circle with you
+  send requests to this machine. A machine shared this way is never offered
+  open pool work. `potluck contribute share mine` returns it to your own
+  machines only, which is the default.
+- `potluck contribute status` now says who the machine is shared with.
+- `potluck run --scope circle` sends one prompt to a machine in one of your
+  trusted circles. Add `--circle <name>` when you have more than one circle,
+  and pass a `--model` the circle is offering. The desktop app's chat header
+  lists those models. The machine that answers sees the prompt.
+- The engine recovers by itself when sharing is switched on before you sign
+  in, and announces a model you load after it has connected.
+- Coding agent sessions, batch jobs and projects with a model lock still run
+  on your own machines only.
+
+Circles are created and managed in the desktop app (0.1.9 or later). Trusted
+circle sharing is new: it has been tested end to end on our own machines and
+has not had wide use yet.
 
 ## Install or upgrade
 
@@ -27,17 +34,8 @@ brew upgrade potluck
 potluck --version
 ```
 
+When the CLI uses the desktop app's engine, update the desktop app to 0.1.9 as
+well. Restart a running engine after upgrading (`potluck down`, then any
+command).
+
 Standalone archives and checksums: [downloads](https://github.com/newtorob/homebrew-potluck#downloads).
-Expected CLI version: `0.1.6`.
-
-## Compatibility and scope
-
-macOS 15+ on Apple Silicon, and Linux x86-64 with glibc 2.35+. Node.js 20+
-is required; Homebrew supplies it. This CLI-only release keeps the native
-runtime from 0.1.3 to 0.1.5 byte for byte, including its Developer ID signed
-and Apple-notarized Mac runtime. Existing settings, downloaded weights and
-project model locks are preserved. The coding agent is unchanged.
-
-Household connections require a separately installed mesh daemon. This
-release does not automatically enable sharing. Windows, Intel Mac and Linux
-ARM64 archives are not included.
