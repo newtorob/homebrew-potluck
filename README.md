@@ -5,15 +5,15 @@ terminal coding agent powered by Potluck.
 
 ## Downloads
 
-Mac and Linux: **0.1.8**. The Linux package includes Vulkan GPU acceleration.
+Mac and Linux: **0.1.9**. The Linux package includes Vulkan GPU acceleration.
 
 | Platform | Archive | Checksum |
 | --- | --- | --- |
-| macOS 15+, Apple Silicon | [Download](https://releases.trypotluck.ai/cli/0.1.8/potluck-cli-0.1.8-darwin-arm64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.8/potluck-cli-0.1.8-darwin-arm64.tar.gz.sha256) |
-| Linux x86-64, glibc 2.35+ | [Download](https://releases.trypotluck.ai/cli/0.1.8/potluck-cli-0.1.8-linux-x64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.8/potluck-cli-0.1.8-linux-x64.tar.gz.sha256) |
+| macOS 15+, Apple Silicon | [Download](https://releases.trypotluck.ai/cli/0.1.9/potluck-cli-0.1.9-darwin-arm64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.9/potluck-cli-0.1.9-darwin-arm64.tar.gz.sha256) |
+| Linux x86-64, glibc 2.35+ | [Download](https://releases.trypotluck.ai/cli/0.1.9/potluck-cli-0.1.9-linux-x64.tar.gz) | [SHA-256](https://releases.trypotluck.ai/cli/0.1.9/potluck-cli-0.1.9-linux-x64.tar.gz.sha256) |
 
 The Mac package's runtime is byte-identical to the engine inside the signed and
-Apple-notarized Potluck 0.1.9 desktop app.
+Apple-notarized Potluck 0.1.10 desktop app.
 This repository contains only the Homebrew formula and public documentation.
 
 ## Linux GPU support
@@ -26,7 +26,7 @@ AMD hardware validation is still pending. Performance depends on the GPU,
 model and available memory. Managed model splits remain CPU-backed on Linux.
 
 After upgrading, restart the running engine. If you use the desktop app's
-engine, update the desktop app to 0.1.9 too.
+engine, update the desktop app to 0.1.10 too.
 
 ## Install
 
@@ -152,6 +152,27 @@ Once output has started, an interruption returns an error without silently
 replaying the answer. Quiet requests use reachability probes to detect
 disconnected workers sooner while preserving slow, healthy model generation.
 You can issue a new request after connectivity returns.
+
+## Trusted circles
+
+A circle is a small group of people who let each other's machines answer their
+requests. Sign in first with `potluck login`.
+
+```sh
+potluck circle create "Friends"
+potluck circle invite "Friends"
+potluck circle join ABCD-EFGH-JKMN
+potluck circle list
+potluck contribute share circles
+potluck run "Say hello" --scope circle --circle "Friends"
+```
+
+`invite` prints a code that works once and expires in seven days. `join` shows
+what joining means and joins only with `--yes`. `contribute share circles` lets
+people in your circles send requests to this machine; it is never offered open
+pool work. A circle request goes through the Potluck coordinator to one machine
+in the circle, and that machine sees the conversation. `potluck circle leave`
+and `potluck circle delete` need `--yes`.
 
 ## Background runtime
 

@@ -1,24 +1,31 @@
-# Potluck CLI 0.1.8
+# Potluck CLI 0.1.9
 
-Share a machine with a trusted circle, and send a prompt to one.
+Invite people to a trusted circle and join one from the terminal. Also closes
+a hole in which machines may send requests to yours.
 
-- `potluck contribute share circles` lets people in a trusted circle with you
-  send requests to this machine. A machine shared this way is never offered
-  open pool work. `potluck contribute share mine` returns it to your own
-  machines only, which is the default.
-- `potluck contribute status` now says who the machine is shared with.
-- `potluck run --scope circle` sends one prompt to a machine in one of your
-  trusted circles. Add `--circle <name>` when you have more than one circle,
-  and pass a `--model` the circle is offering. The desktop app's chat header
-  lists those models. The machine that answers sees the prompt.
-- The engine recovers by itself when sharing is switched on before you sign
-  in, and announces a model you load after it has connected.
-- Coding agent sessions, batch jobs and projects with a model lock still run
-  on your own machines only.
+- `potluck circle create "<name>"` makes a circle. `potluck circle invite
+  "<circle>"` prints a code and a link that work once and expire after seven
+  days. Send it to one person you trust.
+- `potluck circle join <code-or-link>` shows the circle's name, who invited
+  you and what joining means. It joins only with `--yes`. People in the circle
+  can then send requests to your machines that share with trusted circles,
+  and you can send requests to theirs.
+- `potluck circle list` shows your circles, the people in them and the models
+  their machines are offering right now. `potluck circle leave` and
+  `potluck circle delete` need `--yes`.
+- A machine with only the CLI can now lend to a circle. The engine registers
+  its own machine key when you sign in.
+- When no machine in the circle offers the model, `potluck run --scope circle`
+  now says so plainly.
+- Security: a machine now answers another machine only when its own mesh
+  daemon lists that machine as a reachable member of your household. Before,
+  any device with an address in the mesh's range, which Tailscale also uses,
+  could read the machine's name and hardware, and with sharing on could send
+  it requests.
 
-Circles are created and managed in the desktop app (0.1.9 or later). Trusted
-circle sharing is new: it has been tested end to end on our own machines and
-has not had wide use yet.
+A circle request goes through the Potluck coordinator to one machine in the
+circle. That machine sees the conversation. Coding agent sessions, batch jobs
+and projects with a model lock still run on your own machines only.
 
 ## Install or upgrade
 
@@ -34,8 +41,8 @@ brew upgrade potluck
 potluck --version
 ```
 
-When the CLI uses the desktop app's engine, update the desktop app to 0.1.9 as
-well. Restart a running engine after upgrading (`potluck down`, then any
+When the CLI uses the desktop app's engine, update the desktop app to 0.1.10
+as well. Restart a running engine after upgrading (`potluck down`, then any
 command).
 
 Standalone archives and checksums: [downloads](https://github.com/newtorob/homebrew-potluck#downloads).
