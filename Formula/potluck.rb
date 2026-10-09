@@ -6,18 +6,18 @@ class Potluck < Formula
     depends_on arch: :arm64
     depends_on macos: :sequoia
     on_arm do
-      version "0.1.9"
-      url "https://releases.trypotluck.ai/cli/0.1.9/potluck-cli-0.1.9-darwin-arm64.tar.gz"
-      sha256 "08e8c1658ae1e485234ac7947814e8c3a56c968edfe2f6a2f851b85675d36ba5"
+      version "0.1.10"
+      url "https://releases.trypotluck.ai/cli/0.1.10/potluck-cli-0.1.10-darwin-arm64.tar.gz"
+      sha256 "d698391bd6cd1b1667b06cfd121e9cce9914a04e40107c72976bce66199616a2"
     end
   end
 
   on_linux do
     depends_on arch: :x86_64
     on_intel do
-      version "0.1.9"
-      url "https://releases.trypotluck.ai/cli/0.1.9/potluck-cli-0.1.9-linux-x64.tar.gz"
-      sha256 "24628724731cd1a98793a2dfb1059f893b74078cc33d5838febe750ea89f9281"
+      version "0.1.10"
+      url "https://releases.trypotluck.ai/cli/0.1.10/potluck-cli-0.1.10-linux-x64.tar.gz"
+      sha256 "cd453b846c05d26358ea994987f812bf784361a5423c091f52f99720f59b8275"
     end
   end
 
